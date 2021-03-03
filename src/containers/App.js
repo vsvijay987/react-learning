@@ -20,6 +20,12 @@ import classes from "../containers/App.css";
 // `;
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    console.log('App.js in constructor');
+  }
+
   state = {
     persons: [
       { id: "abcd", name: "Vijay", age: 24 },
@@ -29,6 +35,21 @@ class App extends Component {
     otherState: "something",
     showPersons: false,
   };
+
+  static getDerivedStateFromProps(props, state){
+    console.log("App.js getDerivedStateFromProps", props);
+    return state;
+  }
+
+  componentDidMount(){
+    console.log("App.js compDidMount");
+  }
+
+  componentWillUnmount(){
+    console.log("App.js fromcomponentWillMount");
+  }
+
+
 
   // console.log(personState, otherState);
 
@@ -63,6 +84,8 @@ class App extends Component {
   };
 
   render() {
+
+    console.log("App.js render");
     // const style = {
     //   backgroundColor: 'green',
     //   color: 'white',
@@ -120,6 +143,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title = {this.props.projectTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           toggle={this.togglePersonsHandler}

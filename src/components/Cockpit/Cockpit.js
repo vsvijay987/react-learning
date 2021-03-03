@@ -13,7 +13,7 @@ const cockpit = (props) => {
   if (props.persons.length <= 1) assignedClasses.push(classes.bold);
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi i'm React App</h1>
+      <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>this is working fine</p>
       <button className={btnClass} onClick={props.toggle}>
         toggle persons
