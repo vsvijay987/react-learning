@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
-import withClass from '../hoc/withClass';
-import Auxiliary from '../hoc/Auxiliary';
+import withClass from "../hoc/withClass";
+import Auxiliary from "../hoc/Auxiliary";
 
 // import styled from "styled-components";
 import classes from "../containers/App.css";
@@ -23,10 +23,9 @@ import classes from "../containers/App.css";
 // `;
 
 class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    console.log('App.js in constructor');
+    console.log("App.js in constructor");
   }
 
   state = {
@@ -38,31 +37,30 @@ class App extends Component {
     otherState: "something",
     showPersons: false,
     showCockpit: true,
+    changeCounter: 0,
   };
 
-  static getDerivedStateFromProps(props, state){
+  static getDerivedStateFromProps(props, state) {
     console.log("App.js getDerivedStateFromProps", props);
     return state;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log("App.js compDidMount");
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  shouldComponentUpdate(nextProps, nextState) {
     console.log("App.js shouldComponentUpdate");
     return true;
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log("App.js componentDidUpdate");
   }
 
   // componentWillmount(){
   //   console.log("App.js fromcomponentWillMount");
   // }
-
-
 
   // console.log(personState, otherState);
 
@@ -88,7 +86,12 @@ class App extends Component {
 
     persons[personIndex] = person;
 
-    this.setState({ persons: persons });
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
+    });
   };
 
   togglePersonsHandler = () => {
@@ -97,7 +100,6 @@ class App extends Component {
   };
 
   render() {
-
     console.log("App.js render");
     // const style = {
     //   backgroundColor: 'green',
@@ -155,13 +157,17 @@ class App extends Component {
 
     return (
       <Auxiliary>
-        <button onClick={() => this.setState({showCockpit: false})}>Remove cockpit</button>
-        {this.state.showCockpit ? <Cockpit
-          title = {this.props.projectTitle}
-          showPersons={this.state.showPersons}
-          personslength={this.state.persons.length}
-          toggle={this.togglePersonsHandler}
-        /> : null}
+        <button onClick={() => this.setState({ showCockpit: false })}>
+          Remove cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.projectTitle}
+            showPersons={this.state.showPersons}
+            personslength={this.state.persons.length}
+            toggle={this.togglePersonsHandler}
+          />
+        ) : null}
         {persons}
       </Auxiliary>
     );
