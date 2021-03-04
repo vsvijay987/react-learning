@@ -1,29 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 // import Radium from 'radium';
 // import styled from 'styled-components';
-import classes from './Person.css';
+import classes from "./Person.css";
 
+class Person extends Component {
+  render() {
+    return (
+      <div className={classes.Person}>
+        <p onClick={this.props.click}>
+          I'm a {this.props.name} and i'm {this.props.age} year old
+        </p>
+        <p>{this.props.children}</p>
+        <input onChange={this.props.change} value={this.props.name} />
+      </div>
+    );
+  }
+}
 
-const person = (props) => {
-
-  // const style = {
-  //   '@media (min-width: 500px)': {
-  //     width: '450px',
-  //   }
-  // }
-
- 
-  return (
-    <div className={classes.Person}>
-  
-      <p onClick = {props.click}>
-        I'm a {props.name} and i'm {props.age} year old
-      </p>
-      <p>{props.children}</p>
-      <input onChange = {props.change} value={props.name} />
-   
-    </div>
-  );
-};
-
-export default person;
+export default Person;

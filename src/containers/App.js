@@ -45,9 +45,18 @@ class App extends Component {
     console.log("App.js compDidMount");
   }
 
-  componentWillUnmount(){
-    console.log("App.js fromcomponentWillMount");
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("App.js shouldComponentUpdate");
+    return true;
   }
+
+  componentDidUpdate(){
+    console.log("App.js componentDidUpdate");
+  }
+
+  // componentWillmount(){
+  //   console.log("App.js fromcomponentWillMount");
+  // }
 
 
 
