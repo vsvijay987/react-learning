@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Auxiliary from '../hoc/Auxiliary';
 
 // import styled from "styled-components";
 import classes from "../containers/App.css";
@@ -153,7 +154,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Auxiliary>
         <button onClick={() => this.setState({showCockpit: false})}>Remove cockpit</button>
         {this.state.showCockpit ? <Cockpit
           title = {this.props.projectTitle}
@@ -162,10 +163,10 @@ class App extends Component {
           toggle={this.togglePersonsHandler}
         /> : null}
         {persons}
-      </WithClass>
+      </Auxiliary>
     );
   }
   // return React.createElement('div', {className: 'App'}, React.createElement('h1', {}, 'Does it work now'));
 }
 
-export default App;
+export default withClass(App, classes.App);
