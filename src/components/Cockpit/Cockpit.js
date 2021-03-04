@@ -9,6 +9,9 @@ const cockpit = (props) => {
     setTimeout(() => {
       alert('saved request');
     }, 1000);
+    return () => {
+      console.log("Cockpit.js useEffect");
+    }
   }, [])
 
   let assignedClasses = [];
