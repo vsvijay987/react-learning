@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Auxiliary from '../../../hoc/Auxiliary';
+import PropTypes from 'prop-types';
 // import Radium from 'radium';
 // import styled from 'styled-components';
 import classes from "./Person.css";
@@ -17,6 +18,13 @@ class Person extends Component {
       </Auxiliary>
     );
   }
+}
+
+Person.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  change: PropTypes.func,
+  click: PropTypes.func,
 }
 
 export default withClass(Person, classes.Person);
