@@ -10,9 +10,17 @@ const cockpit = (props) => {
       alert('saved request');
     }, 1000);
     return () => {
-      console.log("Cockpit.js useEffect");
+      console.log("Cockpit.js cleanup work in useEffect");
     }
   }, [])
+
+  useEffect(() => {
+    console.log("Cockpit.js 2nd useEffect");
+
+    return () => {
+      console.log("Cockpit.js clean up work in 2nd useEffect");
+    }
+  })
 
   let assignedClasses = [];
   let btnClass = '';
@@ -21,8 +29,8 @@ const cockpit = (props) => {
       btnClass = classes.Red;
   }
 
-  if (props.persons.length <= 2) assignedClasses.push(classes.red);
-  if (props.persons.length <= 1) assignedClasses.push(classes.bold);
+  if (props.personsLength <= 2) assignedClasses.push(classes.red);
+  if (props.personsLength <= 1) assignedClasses.push(classes.bold);
   return (
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
@@ -34,4 +42,4 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+export default React.memo(cockpit);
