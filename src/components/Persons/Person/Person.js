@@ -20,6 +20,7 @@ class Person extends Component {
   render() {
     return (
       <Auxiliary>
+        {this.props.auth ?<p>Authenticated</p> : <p>Please Login</p>}
         <p onClick={this.props.click}>
           I'm a {this.props.name} and i'm {this.props.age} year old
         </p>

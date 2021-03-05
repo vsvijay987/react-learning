@@ -9,7 +9,7 @@ const cockpit = (props) => {
     console.log("Cockpit.js useEffect");
 
     toggleBtnRef.current.click();
-    
+
     return () => {
       console.log("Cockpit.js cleanup work in useEffect");
     };
@@ -39,6 +39,7 @@ const cockpit = (props) => {
       <button ref={toggleBtnRef} className={btnClass} onClick={props.toggle}>
         toggle persons
       </button>
+      <button onClick={props.login}>Login</button>
     </div>
   );
 };
