@@ -1,32 +1,33 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.css";
 
 const cockpit = (props) => {
-  
+
+  const toggleBtnRef = useRef(null);
+
   useEffect(() => {
     console.log("Cockpit.js useEffect");
 
-    setTimeout(() => {
-      alert('saved request');
-    }, 1000);
+    toggleBtnRef.current.click();
+    
     return () => {
       console.log("Cockpit.js cleanup work in useEffect");
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     console.log("Cockpit.js 2nd useEffect");
 
     return () => {
       console.log("Cockpit.js clean up work in 2nd useEffect");
-    }
-  })
+    };
+  });
 
   let assignedClasses = [];
-  let btnClass = '';
+  let btnClass = "";
 
-  if(props.showPersons){
-      btnClass = classes.Red;
+  if (props.showPersons) {
+    btnClass = classes.Red;
   }
 
   if (props.personsLength <= 2) assignedClasses.push(classes.red);
@@ -35,7 +36,7 @@ const cockpit = (props) => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>this is working fine</p>
-      <button className={btnClass} onClick={props.toggle}>
+      <button ref={toggleBtnRef} className={btnClass} onClick={props.toggle}>
         toggle persons
       </button>
     </div>
